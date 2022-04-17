@@ -1,0 +1,40 @@
+
+n = 26
+asc = ord('a')
+
+def code(text):
+    s = ''
+    for c in text:
+        if not c.isalpha():
+            s += c
+        elif c == c.upper():
+            c = c.lower()
+            c = chr((ord(c) - asc + k) % n + asc).upper()
+            s += c
+        elif c.isalpha():
+            c = chr((ord(c) - asc + k) % n + asc)
+            s += c
+    return s
+
+def de_code(text):
+    s = ''
+    for c in text:
+        if not c.isalpha():
+            s += c
+        elif c == c.upper():
+            c = c.lower()
+            c = chr((ord(c) - asc - k) % n + asc).upper()
+            s += c
+        elif c.isalpha():
+            c = chr((ord(c) - asc - k) % n + asc)
+            s += c
+    return s
+
+print('Введите текс для шифрования')
+text = input()
+text_arr = text.split()
+arr = []
+for i in range(len(text_arr)):
+    k = len([j for j in range(len(text_arr[i])) if text_arr[i][j].isalpha()])
+    arr.append(code(text_arr[i]))
+print(*arr)
